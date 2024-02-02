@@ -14,8 +14,8 @@ import (
 type Conn interface {
 	FDConn
 	ReadLine() ([]byte, bool, error)
-	//GetWebsocketConn() *websocket.Conn
-	//SetWebsocketConn(*websocket.Conn)
+	WriteString(s string) (n int, err error)
+	Flush() error
 	LoadValue() any
 	StoreValue(v any)
 }
