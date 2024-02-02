@@ -86,7 +86,7 @@ func (s *server) onAccept() error {
 	}
 
 	var c = new(connection)
-	c.init(conn.(FDConn), s.o, s.eh)
+	c.init(conn.(FDConn), s.o)
 	if !c.IsActive() {
 		return nil
 	}
@@ -99,6 +99,7 @@ func (s *server) onAccept() error {
 
 	taskpool.Submit(c.ctx, func() {
 		s.eh.OnConnect(c.ctx, c)
+		c.onPrepare(s.o, s.eh)
 	})
 
 	//todo 关闭连接前可以先返回错误信息

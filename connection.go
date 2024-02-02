@@ -361,7 +361,7 @@ var barrierPool = sync.Pool{
 }
 
 // init initialize the connection with options
-func (c *connection) init(conn FDConn, opts *options, eh EventHandler) (err error) {
+func (c *connection) init(conn FDConn, opts *options) (err error) {
 	// init buffer, barrier, finalizer
 	c.readTrigger = make(chan struct{}, 1)
 	c.writeTrigger = make(chan error, 1)
@@ -385,7 +385,8 @@ func (c *connection) init(conn FDConn, opts *options, eh EventHandler) (err erro
 	}
 
 	// connection initialized and prepare options
-	return c.onPrepare(opts, eh)
+	//return c.onPrepare(opts, eh)
+	return nil
 }
 
 func (c *connection) initNetFD(conn FDConn) {
