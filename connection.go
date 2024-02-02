@@ -77,7 +77,7 @@ func (c *connection) IsActive() bool {
 }
 
 func (c *connection) SetOnRead(onRead func(context.Context, Conn) error) {
-	c.onReadCallback.Store(onRead)
+	c.onReadCallback.Store(OnRead(onRead))
 }
 
 // SetIdleTimeout implements Connection.
