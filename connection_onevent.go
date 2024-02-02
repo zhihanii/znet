@@ -1,6 +1,8 @@
 package znet
 
-import "github.com/zhihanii/im-pusher/pkg/gopool"
+import (
+	"github.com/zhihanii/taskpool"
+)
 
 type gracefulExit interface {
 	isIdle() bool
@@ -57,7 +59,7 @@ func (c *connection) onProcess(isProcessable func(c *connection) bool, process f
 		return
 	}
 
-	gopool.Submit(c.ctx, task)
+	taskpool.Submit(c.ctx, task)
 
 	return true
 }

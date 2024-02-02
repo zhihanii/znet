@@ -2,7 +2,7 @@ package znet
 
 import (
 	"context"
-	"github.com/zhihanii/im-pusher/pkg/gopool"
+	"github.com/zhihanii/taskpool"
 	"github.com/zhihanii/zlog"
 	"strings"
 	"sync"
@@ -95,7 +95,7 @@ func (s *server) OnAccept() error {
 	})
 	s.connections.Store(fd, c)
 
-	gopool.Submit(c.ctx, func() {
+	taskpool.Submit(c.ctx, func() {
 		s.eh.OnConnect(c.ctx, c)
 	})
 
