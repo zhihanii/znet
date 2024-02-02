@@ -11,7 +11,7 @@ type gracefulExit interface {
 }
 
 func (c *connection) onRead() (needTrigger bool) {
-	zlog.Infof("connection onRead")
+	//zlog.Infof("connection onRead")
 	var onRead, ok = c.onReadCallback.Load().(OnRead)
 	if !ok {
 		zlog.Infof("failed to load OnRead")
@@ -43,16 +43,13 @@ func (c *connection) onProcess(isProcessable func(c *connection) bool, process f
 		// `process` must be executed at least once if `isProcessable` in order to cover the `send & close by peer` case.
 		// Then the loop processing must ensure that the connection `IsActive`.
 		if isProcessable(c) {
-			zlog.Infof("process")
 			process(c)
 		}
 		for c.IsActive() && isProcessable(c) {
-			zlog.Infof("process")
 			process(c)
 		}
 		// Handling callback if connection has been closed.
 		if !c.IsActive() {
-			zlog.Infof("not active, close")
 			c.closeCallback(false)
 			return
 		}
