@@ -2,6 +2,7 @@ package znet
 
 import (
 	"github.com/zhihanii/taskpool"
+	"github.com/zhihanii/zlog"
 )
 
 type gracefulExit interface {
@@ -10,6 +11,7 @@ type gracefulExit interface {
 }
 
 func (c *connection) onRead() (needTrigger bool) {
+	zlog.Infof("connection onRead")
 	var onRead, ok = c.onReadCallback.Load().(OnRead)
 	if !ok {
 		return true
