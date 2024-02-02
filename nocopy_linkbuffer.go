@@ -469,7 +469,7 @@ func (b *LinkBuffer) WriteString(s string) (n int, err error) {
 		return
 	}
 	buf := unsafeStringToSlice(s)
-	return b.WriteBinary(buf)
+	return b.WriteBytes(buf)
 }
 
 // WriteBinary implements Writer.
