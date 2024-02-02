@@ -406,6 +406,7 @@ func (c *connection) initFDOperator() {
 	op.OnHup = c.onHup
 	op.Inputs, op.InputAck = c.inputs, c.inputAck
 	op.Outputs, op.OutputAck = c.outputs, c.outputAck
+	op.isConnection = true
 
 	// if connection has been registered, must reuse poll here.
 	//if c.pd != nil && c.pd.operator != nil {

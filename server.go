@@ -27,12 +27,14 @@ type server struct {
 
 func (s *server) Run() (err error) {
 	s.operator = &FDOperator{
-		FD: s.listener.Fd(),
+		FD:           s.listener.Fd(),
+		OnAccept:     s.onAccept,
+		isConnection: false,
 	}
 	s.operator.poller = defaultPollerManager.Pick()
 	err = s.operator.Control(EpollRead)
 	if err != nil {
-
+		zlog.Errorf("operator control: %v", err)
 	}
 	return err
 }
@@ -67,7 +69,7 @@ func (s *server) Close(ctx context.Context) error {
 	}
 }
 
-func (s *server) OnAccept() error {
+func (s *server) onAccept() error {
 	conn, err := s.listener.Accept()
 	if err != nil {
 		// shut down
