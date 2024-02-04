@@ -152,6 +152,7 @@ func (p *defaultPoller) handle(events []epollevent) (closed bool) {
 		}
 
 		if evt&syscall.EPOLLOUT != 0 {
+			zlog.Infof("epoll_out event")
 			if operator.isConnection {
 				var bs, supportZeroCopy = operator.Outputs(p.barriers[i].bs)
 				if len(bs) > 0 {
