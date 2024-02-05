@@ -331,18 +331,18 @@ func (c *connection) Read(p []byte) (n int, err error) {
 
 // Write will Flush soon.
 func (c *connection) Write(p []byte) (n int, err error) {
-	////atomic实现的加锁
-	//if !c.IsActive() || !c.lock(flushing) {
-	//	return 0, fmt.Errorf("err conn closed when write")
-	//}
-	//defer c.unlock(flushing)
-	//
-	//dst, _ := c.outputBuffer.Malloc(len(p))
-	//n = copy(dst, p)
-	//c.outputBuffer.Flush()
-	//err = c.flush()
-	//return n, err
-	return c.WriteBytes(p)
+	//atomic实现的加锁
+	if !c.IsActive() || !c.lock(flushing) {
+		return 0, fmt.Errorf("err conn closed when write")
+	}
+	defer c.unlock(flushing)
+
+	dst, _ := c.outputBuffer.Malloc(len(p))
+	n = copy(dst, p)
+	c.outputBuffer.Flush()
+	err = c.flush()
+	return n, err
+	//return c.WriteBytes(p)
 }
 
 // Close implements Connection.
