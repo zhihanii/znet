@@ -342,7 +342,7 @@ func (c *connection) Write(p []byte) (n int, err error) {
 	//c.outputBuffer.Flush()
 	//err = c.flush()
 	now := time.Now()
-	if now.Sub(c.lastFlush) > time.Second {
+	if now.Sub(c.lastFlush) > time.Second*2 {
 		c.lastFlush = now
 		c.outputBuffer.Flush()
 		err = c.flush()
