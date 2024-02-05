@@ -51,8 +51,8 @@ type connection struct {
 	maxSize         int // The maximum size of data between two Release().
 	bookSize        int // The size of data that can be read at once.
 
-	//wsConn *websocket.Conn
-	value any
+	value     any
+	lastFlush time.Time
 }
 
 func (c *connection) Reader() Reader {
@@ -339,10 +339,15 @@ func (c *connection) Write(p []byte) (n int, err error) {
 
 	dst, _ := c.outputBuffer.Malloc(len(p))
 	n = copy(dst, p)
-	c.outputBuffer.Flush()
-	err = c.flush()
+	//c.outputBuffer.Flush()
+	//err = c.flush()
+	now := time.Now()
+	if now.Sub(c.lastFlush) > time.Second {
+		c.lastFlush = now
+		c.outputBuffer.Flush()
+		err = c.flush()
+	}
 	return n, err
-	//return c.WriteBytes(p)
 }
 
 // Close implements Connection.
