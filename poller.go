@@ -138,6 +138,7 @@ func (p *defaultPoller) handle(events []epollevent) (closed bool) {
 
 		if evt&(syscall.EPOLLHUP|syscall.EPOLLRDHUP) != 0 {
 			p.appendHup(operator)
+			continue
 		}
 
 		if evt&syscall.EPOLLERR != 0 {
