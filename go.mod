@@ -9,7 +9,7 @@ require (
 
 require (
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/zhihanii/taskpool v0.0.1 // indirect
+	github.com/zhihanii/taskpool v0.0.4 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
 )

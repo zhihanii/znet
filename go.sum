@@ -10,6 +10,10 @@ github.com/zhihanii/im-pusher v0.0.1 h1:WhNHsrEbdsNyv+CIR1OC08QfJqkJIZrZFlOyELYT
 github.com/zhihanii/im-pusher v0.0.1/go.mod h1:JE081gcl9z3xQMXDcgBqCiv8VKfYxe8SA5S04VSE7ic=
 github.com/zhihanii/taskpool v0.0.1 h1:vMdmEuvvEY2XMzbuDUWZQ0sSAoKoMWQ7YSAa68xaa6w=
 github.com/zhihanii/taskpool v0.0.1/go.mod h1:zMTtofFxTi9geSNQDkEWKJaKpa5hRnkwR6+CXsmzlxc=
+github.com/zhihanii/taskpool v0.0.3 h1:ekcoM53EiPmyEd6DsXlqLDr9/JxcBUXLYVDZ2NXXfpg=
+github.com/zhihanii/taskpool v0.0.3/go.mod h1:zMTtofFxTi9geSNQDkEWKJaKpa5hRnkwR6+CXsmzlxc=
+github.com/zhihanii/taskpool v0.0.4 h1:wGa1FKWmfp/5apTX/IO3StEv4U9aiO6FeiFo8BtS7Pg=
+github.com/zhihanii/taskpool v0.0.4/go.mod h1:zMTtofFxTi9geSNQDkEWKJaKpa5hRnkwR6+CXsmzlxc=
 github.com/zhihanii/websocket v0.0.0-20240202095032-ba0514ca3588 h1:vny+SRCazc9xXvcn4sOGxb6kHUHAYeWhlafL8K7D7V4=
 github.com/zhihanii/websocket v0.0.0-20240202095032-ba0514ca3588/go.mod h1:+EvoEY+hPNaABda/3nMRgOEw5wuqDzMAIJk08K40xns=
 github.com/zhihanii/zlog v0.0.2 h1:MyVnmTkOmv9ByX8TxIK9/QkZObLYCalO7varUxUczhI=
