@@ -5,12 +5,18 @@ import (
 	"github.com/zhihanii/zlog"
 )
 
+const defaultNumLoops = 100
+
 var defaultPollerManager *pollerManager
 
 func init() {
 	defaultPollerManager = new(pollerManager)
 	defaultPollerManager.SetLoadBalancer(RoundRobin)
-	defaultPollerManager.SetNumLoops(200)
+	defaultPollerManager.SetNumLoops(defaultNumLoops)
+}
+
+func Init(numLoops int) {
+	defaultPollerManager.SetNumLoops(numLoops)
 }
 
 type pollerManager struct {
