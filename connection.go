@@ -386,9 +386,18 @@ func (c *connection) init(conn FDConn, opts *options, eh EventHandler) (err erro
 		setTCPNoDelay(c.fd, true)
 	}
 	// check zero-copy
-	if setZeroCopy(c.fd) == nil && setBlockZeroCopySend(c.fd, defaultZeroCopyTimeoutSec, 0) == nil {
+	//if setZeroCopy(c.fd) == nil && setBlockZeroCopySend(c.fd, defaultZeroCopyTimeoutSec, 0) == nil {
+	//	zlog.Infof("support zero-copy")
+	//	c.supportZeroCopy = true
+	//}
+
+	err1 := setZeroCopy(c.fd)
+	err2 := setBlockZeroCopySend(c.fd, defaultZeroCopyTimeoutSec, 0)
+	if err1 == nil && err2 == nil {
 		zlog.Infof("support zero-copy")
 		c.supportZeroCopy = true
+	} else {
+		zlog.Infof("not support zero-copy: %v, %v", err1, err2)
 	}
 
 	// connection initialized and prepare options
