@@ -118,7 +118,6 @@ func (p *defaultPoller) handle(events []epollevent) (closed bool) {
 		}
 
 		evt := events[i].events
-		//todo 区分连接和非连接
 		if evt&syscall.EPOLLIN != 0 {
 			if operator.isConnection {
 				var bs = operator.Inputs(p.barriers[i].bs)
